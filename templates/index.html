@@ -1,0 +1,108 @@
+<html>
+<head>
+	<style>
+		.example-div {
+			background-color: white;
+			border: 3px solid green;
+			padding: 5px;
+		}
+		.form{
+			padding-left: 10px;
+			z-index: 2;
+			position: relative;
+			display: -ms-flexbox;
+			display: flex;
+			width: 100%;
+			background-color: #fff;
+			border-radius: 60px;
+			overflow: hidden;
+		}
+		.forsrch{
+			width: 100%;
+			position: relative;
+		}
+		.searchinput{
+			padding-left: 20px;
+			font-size: 16px;
+			padding: 18px 24px;
+			font-family: "Helvetica";
+			width: 100%;
+			outline: 0;
+			margin: 0;
+			padding: 0;
+			border: 0;
+			background: 
+		}
+		.button{
+			padding: 13px;
+			outline: 0;
+			background: #ffc800;
+			border-radius: 50%;
+			display: -ms-flexbox;
+			display: flex;
+			-ms-flex-align: center;
+			align-items: center;
+			padding: 10px;
+}
+		}
+		.buttoncon{
+			margin: 0;
+			padding: 0;
+			border: 0;
+			outline: 0;
+		}
+		.topic{
+			font-family: "Helvetica";
+			color: white;
+			text-align: center;
+
+		}
+		.para{
+			font-family: "Helvetica";
+			color: white;
+			font-size: 15px;
+		}
+		.topic2{
+			font-family: "Helvetica";
+			color: white;
+		}
+</style>
+	<title>Ikman better filters</title>
+</head>
+<body bgcolor="#149777">
+	<div class="topiccon">
+		<h1 class="topic">Better Ikman</h1>
+	</div>
+	<div class="forsrch">
+		<form class="form" method="post" action="{{ url_for("home")}}">
+			<input class="searchinput" type="text" id="fname" name="fname"placeholder="What are you looking for?">
+			<div>
+				<button class="button" type="submit">
+					<div class="buttoncon">
+						<img src="https://commons.wikimedia.org/wiki/File:Search_Icon.svg">
+					</div>
+				</button>
+			</div>
+		</form>
+	</div>
+	<div>
+		<p class="para">Better ikman is made for quick ikman searches<br>
+		Better ikman has easily accesible filters<br>
+	    and loads all results to on page.<br>
+		Better ikman is multi threaded for faster seacrhes<br>
+	    </p>
+	    <h3 class="Topic2">How to use</h3>
+	    <p class="para">
+	    	Multi search: adding a comma in bettween search terms will<br>
+	    	search for differnt terms and merge results<br>
+	    	multi search is multithreaded where each term has its own thread<br>
+	    	but since a single term only has a single thread getting many pages can<br>
+	    	take time.
+	    	<br>
+	    	<br>
+	    	Single Search: single searches are multi threaded to load faster<br>
+	    	if ur search term returns large amount of results runing it single <br>
+	    	search mode will get ur results faster
+	    </p>
+	</div>
+</body>
