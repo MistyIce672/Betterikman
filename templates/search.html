@@ -1,0 +1,222 @@
+<html>
+<head>
+	<style>
+		.example-div {
+			background-color: white;
+			padding: 5px;
+			border: 2px solid #e7edee;
+		}
+		.leftdiv{
+			padding-left: 400px;
+			padding-right: 400px;
+		}
+		.filters {
+			background: red;
+			left: -50px
+		}
+		.head{
+			margin:0;
+			padding:0;
+		}
+		.sidenav {
+			height: 100%;
+			width: 0;
+			position: fixed;
+			z-index: 1;
+			top: 0;
+			left: 0;
+			background-color: #009877;
+			overflow-x: hidden;
+			transition: 0.5s;
+			padding-top: 60px;
+		}
+		.sidenav a {
+			padding: 8px 8px 8px 32px;
+			text-decoration: none;
+			font-size: 25px;
+			color: #818181;
+			display: block;
+			transition: 0.3s;
+		}
+		.sidenav a:hover {
+			color: #f1f1f1;
+		}
+		.sidenav .closebtn {
+			position: absolute;
+			top: 0;
+			right: 25px;
+			font-size: 36px;
+			margin-left: 50px;
+		}
+		.whitetxtx {
+			color: white;
+			text-decoration-color: white;
+		}
+		@media screen and (max-height: 450px) {
+			.sidenav {padding-top: 15px;}
+			.sidenav a {font-size: 18px;}
+		}
+		.imgleft {
+			height: 102px;
+			width: 136px;
+		}
+		.rightbox {
+			right: 300px;
+			width: 600px;
+		}
+		.imgcont {
+			width: 120px;
+		}
+		.flex-container {
+			display: flex;
+		}
+		.flex-container > div {
+			margin: 10px;
+			padding: 2px;
+			font-size: 8px;
+		}
+		.title {
+			font-size: 16px;
+			color: black;
+			font-weight: 800;
+			font-family: 'Helvetica';
+		}
+		.location{
+			color: #707676;
+			padding: 3px;
+			font-size: 13px;
+			font-family: 'Helvetica';
+		}
+		.price {
+			color: #009877;
+			padding: 3px;
+			font-size: 13px;
+			font-weight: 800;
+			font-family: 'Helvetica';
+		}
+		.time{
+			color: #707676;
+			text-align: right;
+			margin-top: auto;
+			line-height: 20px;
+			font-size: 13px;
+			font-family: 'Helvetica';
+
+		}
+		a:active{
+			text-decoration: none;
+		}
+		a:visited{
+			text-decoration: none;
+		}
+		a:hover{
+			text-decoration: none;
+		}
+		a:link{
+			text-decoration: none;
+		}
+		.filt{
+			color: #009877;
+		}
+		.ass{
+			width: 100%;
+			border-radius: 0;
+			position: relative;
+			border: 1px solid #d4ded9;
+			border-radius: 2px;
+			background-color: #fff;
+			outline: none;
+			text-align: left;
+		}
+}
+</style>
+	<title>Ikman better filters</title>
+</head>
+<body bgcolor="#e7edee">
+	<div id="mySidenav" class="sidenav">
+	  <form method="post" action="{{ url_for("search")}}">
+	  	<label for="maxprice" style="color:white">maxprice:</label>
+		<input type="text" id="maxprice" name="maxprice">
+		<label for="minprice" style="color:white">minprice:</label>
+		<input type="text" id="minprice" name="minprice">
+		<label for="maxdate" style="color:white">maxdate:</label>
+		<input type="text" id="maxdate" name="maxdate"><br>
+		<label for="Gampaha" style="color:white">Gampaha:</label>
+		{%if "GAMPAHA" in locations:%}
+			<input type="checkbox" id="gampaha" name="Gampaha" checked><br>
+		{%else%}
+			<input type="checkbox" id="gampaha" name="Gampaha" ><br>
+		{%endif%}
+		<label for="Colombo" style="color:white">Colombo:</label>
+		{%if "COLOMBO" in locations:%}
+			<input type="checkbox" id="Colombo" name="Colombo" checked><br>
+		{%else%}
+			<input type="checkbox" id="Colombo" name="Colombo"><br>
+		{%endif%}
+		<label for="Kandy" style="color:white">Kandy:</label>
+		{%if "KANDY" in locations:%}
+			<input type="checkbox" id="Kandy" name="Kandy" checked><br>
+		{%else%}
+			<input type="checkbox" id="Kandy" name="Kandy"><br>
+		{%endif%}
+		<label for="kalutara" style="color:white">kalutara:</label>
+		{%if "KALUTARA" in locations:%}
+			<input type="checkbox" id="kalutara" name="kalutara" checked><br>
+		{%else%}
+			<input type="checkbox" id="kalutara" name="kalutara"><br>
+		{%endif%}
+		<label for="Kurunegala" style="color:white">Kurunegala:</label>
+		{%if "KURUNEGALA" in locations:%}
+			<input type="checkbox" id="Kurunegala" name="Kurunegala" checked><br>
+		{%else%}
+			<input type="checkbox" id="Kurunegala" name="Kurunegala"><br>
+		{%endif%}
+		<label for="include" style="color:white">include:</label>
+		<input type="text" id="include" name="include"><br>
+		<label for="exclude" style="color:white">exclude:</label>
+		<input type="text" id="exclude" name="exclude"><br>
+		<label for="sort" style="color:white">sort:</label>
+		<select class="ass" id="sort" name="sort">
+		    <option value="price">Price</option>
+		    <option value="date">Date</option>
+		</select><br>
+		<input type="submit" value="apply">
+	</form>
+	<span style="font-size:30px;cursor:pointer;color: white" onclick="closeNav()">cancel</span>
+	</div>
+	<div class="leftdiv">
+	<span class="filt"style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; filters</span>
+	{% for item in content%}
+		<div class='example-div'>
+			<div>
+				<a href='{{content[item]["link"]}}'>
+					<div class="flex-container">
+					<div class="imgcont">
+						<img class = "imgleft"src={{content[item]["img"]}}>
+					</div>
+					<div class="rightbox">
+						<h2 class="title">{{content[item]["title"]}}</h2>
+						<div>
+							<div class="location">{{content[item]["location"]}}</div>
+							<div class="price">{{content[item]["price"]}}</div>
+							<div class="time">{{content[item]["time"]}} days ago</div>
+						</div>
+					</div>
+					</div>
+			
+			
+			</div>
+			</a>
+		</div>
+	{%endfor%}
+	</div>
+	</div>
+	<script>
+		function openNav() {
+			document.getElementById("mySidenav").style.width = "250px";
+		}
+		function closeNav() {
+			document.getElementById("mySidenav").style.width = "0";
+		}
+</script>
+</body>
